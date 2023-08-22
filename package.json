@@ -1,7 +1,7 @@
 {
-  "name": "chrome-extension-boilerplate-react-vite",
+  "name": "Reviews-plugin",
   "version": "0.0.1",
-  "description": "chrome extension boilerplate",
+  "description": "Reviews plugin",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -16,10 +16,17 @@
   },
   "type": "module",
   "dependencies": {
+    "@hookform/error-message": "2.0.0",
+    "@hookform/resolvers": "2.8.2",
+    "antd": "^5.8.3",
+    "dayjs": "^1.10.7",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-hook-form": "7.18.1",
+    "yup": "0.32.9"
   },
   "devDependencies": {
+    "@hookform/devtools": "3.1.0",
     "@rollup/plugin-typescript": "^8.5.0",
     "@testing-library/react": "13.4.0",
     "@types/chrome": "0.0.197",

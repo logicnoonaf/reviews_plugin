@@ -1,4 +1,4 @@
-type Manifest = chrome.runtime.ManifestV3;
+type Manifest = chrome.runtime.ManifestV2;
 
 class ManifestParser {
   /** SINGLETON */

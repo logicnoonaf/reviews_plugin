@@ -9,7 +9,7 @@ const { resolve } = path;
 const outDir = resolve(__dirname, "..", "..", "public");
 
 export default function makeManifest(
-  manifest: chrome.runtime.ManifestV3
+  manifest: chrome.runtime.ManifestV2
 ): PluginOption {
   return {
     name: "make-manifest",

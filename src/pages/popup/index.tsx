@@ -7,6 +7,7 @@ import refreshOnUpdate from "virtual:reload-on-update-in-view";
 refreshOnUpdate("pages/popup");
 
 function init() {
+  console.log("init");
   const appContainer = document.querySelector("#app-container");
   if (!appContainer) {
     throw new Error("Can not find AppContainer");
