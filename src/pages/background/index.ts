@@ -53,6 +53,8 @@ const proxyBffUrls = [
 let isEnabled = false;
 let isEnabledProxyWidget = false;
 let isEnabledProxyBff = false;
+let customProxyWidget = "";
+let customProxyBff = "";
 let allowedUrl = "https://widgets.automizely.io/reviews/";
 let proxyWidgetUrl = /https:\/\/widgets\.automizely\.io\/reviews\/v1\/(.+)/;
 let proxyBffUrl = "https://bff-api.automizely.io";
@@ -82,6 +84,12 @@ chrome.storage.onChanged.addListener(function (changes, areaName) {
   }
   if (areaName === "sync" && changes.isEnabledProxyBff) {
     isEnabledProxyBff = changes.isEnabledProxyBff.newValue;
+  }
+  if (areaName === "sync" && changes.customProxyWidget) {
+    customProxyWidget = changes.customProxyWidget.newValue;
+  }
+  if (areaName === "sync" && changes.customProxyBff) {
+    customProxyBff = changes.customProxyBff.newValue;
   }
   if (areaName === "sync" && changes.allowed) {
     allowedUrl = defultUrls[changes.allowed.newValue];
@@ -115,7 +123,9 @@ chrome.webRequest.onBeforeRequest.addListener(
 
         if (matchResult && matchResult[1]) {
           // 将匹配项插入重定向 URL 中
-          const redirectUrl = `http://localhost:9000/${matchResult[1]}`;
+          const redirectUrl = `${
+            customProxyWidget ? customProxyWidget : "http://localhost:9000"
+          }/${matchResult[1]}`;
 
           return { redirectUrl };
         }
@@ -123,7 +133,7 @@ chrome.webRequest.onBeforeRequest.addListener(
       if (isEnabledProxyBff) {
         const redirectUrl = details.url.replace(
           proxyBffUrl,
-          "http://localhost:9003"
+          customProxyBff ? customProxyBff : "http://localhost:9003"
         );
 
         return { redirectUrl };
